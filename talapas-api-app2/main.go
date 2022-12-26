@@ -23,6 +23,7 @@ func App2Handler(w http.ResponseWriter, r *http.Request) {
 		log.Printf("failed to read request body: %v", err)
 		return
 	}
+	log.Printf("received request: %v", string(body))
 	var app2req *App2Request
 	err = json.Unmarshal(body, &app2req)
 	if err != nil {
@@ -55,7 +56,7 @@ func App2Handler(w http.ResponseWriter, r *http.Request) {
 }
 
 func main() {
-	app2Port := os.Getenv("APP2_PORT")
+	app2Port := os.Getenv("TALAPAS_API_APP2_PORT")
 	if app2Port == "" {
 		app2Port = "8682"
 	}

@@ -24,6 +24,7 @@ func App1Handler(w http.ResponseWriter, r *http.Request) {
 		log.Printf("failed to read request body: %v", err)
 		return
 	}
+	log.Printf("received request: %v", string(body))
 	var app1req *App1Request
 	err = json.Unmarshal(body, &app1req)
 	if err != nil {
@@ -62,7 +63,7 @@ func App1Handler(w http.ResponseWriter, r *http.Request) {
 }
 
 func main() {
-	app1Port := os.Getenv("APP1_PORT")
+	app1Port := os.Getenv("TALAPAS_API_APP1_PORT")
 	if app1Port == "" {
 		app1Port = "8681"
 	}

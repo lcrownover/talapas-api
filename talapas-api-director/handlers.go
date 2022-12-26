@@ -1,22 +1,22 @@
-package talapas_api
+package main
 
 import (
+	"fmt"
+	"io"
 	"log"
 	"net/http"
 	"os"
-	"fmt"
-	"io"
 )
 
 func App1APIHandler(w http.ResponseWriter, r *http.Request) {
 	// app1Handler brokers data between the API server and app1
 	// validation for input data happens in app1
 	log.Print("forwarding request for app1")
-	app1Host := os.Getenv("APP1_HOST")
+	app1Host := os.Getenv("TALAPAS_API_DIRECTOR_APP1_HOST")
 	if app1Host == "" {
 		app1Host = "localhost"
 	}
-	app1Port := os.Getenv("APP1_PORT")
+	app1Port := os.Getenv("TALAPAS_API_DIRECTOR_APP1_PORT")
 	if app1Port == "" {
 		app1Port = "8681"
 	}
@@ -40,11 +40,11 @@ func App2APIHandler(w http.ResponseWriter, r *http.Request) {
 	// app1Handler brokers data between the API server and app1
 	// validation for input data happens in app1
 	log.Print("forwarding request for app2")
-	app2Host := os.Getenv("APP2_HOST")
+	app2Host := os.Getenv("TALAPAS_API_DIRECTOR_APP2_HOST")
 	if app2Host == "" {
 		app2Host = "localhost"
 	}
-	app2Port := os.Getenv("APP2_PORT")
+	app2Port := os.Getenv("TALAPAS_API_DIRECTOR_APP2_PORT")
 	if app2Port == "" {
 		app2Port = "8682"
 	}
